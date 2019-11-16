@@ -17,7 +17,7 @@ wire clk_half;
 //形成半个时钟，因为只有系统时钟在会有0.5个时钟周期
 assign clk_half = clk_in ^ div2;
 
-//造一个时钟
+//造一个时钟，就是一个模N的计数器
 always@(posedge clk_half,negedge rst_n)begin
 if(!rst_n)begin
 	cnt <= 'd0;
@@ -32,6 +32,7 @@ else begin
 	div1 <='d0;
 end 
 end 
+//这个是一个二分频电路
 always@(posedge div1,negedge rst_n)begin
 if(!rst_n)
 	div2 <= 'd0;
